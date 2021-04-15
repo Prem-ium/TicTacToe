@@ -1,11 +1,4 @@
-
-public class runTicTacToe {
-	public static void main(String[] args) {
-		new TicTacToe();
-	}
-}
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -17,13 +10,18 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class TicTacToe implements ActionListener {
+public class runTicTacToe {
+	public static void main(String[] args) {
+		new TicTacToe();
+	}
+}
+
+class TicTacToe implements ActionListener {
 	private JFrame frame = new JFrame();
 	private JPanel settings = new JPanel();
 	private JPanel titlePanel = new JPanel();
@@ -31,12 +29,11 @@ public class TicTacToe implements ActionListener {
 	private JLabel textfield = new JLabel();
 	private JButton[] buttons = new JButton[9];
 	private boolean xPlayerTurn;
-	private JButton reset = new JButton("reset");
+	private JButton reset = new JButton("RESET GAME");
 	public TicTacToe() {
 		setIcon();
-		frame.setResizable(false);
 		frame.setTitle("Tic-Tac-Toe");
-		frame.setSize(500, 420);
+		frame.setSize(600, 500);
 		frame.getContentPane().setBackground(new Color(123, 50, 250));
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.setLayout(new BorderLayout());
@@ -46,8 +43,8 @@ public class TicTacToe implements ActionListener {
 		textfield.setText("Tic-Tac-Toe");
 		textfield.setOpaque(true);
 		textfield.setFont(new Font("Ink Free", Font.BOLD, 75));
-		textfield.setBackground(Color.BLACK);
-		textfield.setForeground(new Color(0, 200, 180));
+		textfield.setBackground(new Color(0, 0,10));
+		textfield.setForeground(new Color(123, 50, 250));
 		textfield.setHorizontalAlignment(JLabel.CENTER);
 		
 		titlePanel.setLayout(new BorderLayout());
@@ -66,6 +63,7 @@ public class TicTacToe implements ActionListener {
 			buttons[i].setFont(new Font("MV Boli", Font.BOLD, 120));
 			buttons[i].setFocusable(false);
 			buttons[i].addActionListener(this);
+			buttons[i].setBackground(Color.WHITE);
 		}
 		reset.addActionListener(e-> reset(e));
 		frame.add(titlePanel, BorderLayout.NORTH);
@@ -81,18 +79,18 @@ public class TicTacToe implements ActionListener {
 			if(e.getSource()==buttons[i]) {
 				if(xPlayerTurn) {
 					if(buttons[i].getText().isBlank()) {
-						buttons[i].setForeground(new Color(255,0,0));
+						buttons[i].setForeground(new Color(0,0,0));
 						buttons[i].setText("X");
 						xPlayerTurn=false;
-						textfield.setText("O turn");
+						textfield.setText("O's turn");
 						checkWin();
 					}
 				} else {
 					if(buttons[i].getText().isBlank()) {
-						buttons[i].setForeground(new Color(0,0,255));
+						buttons[i].setForeground(new Color(0,0,0));
 						buttons[i].setText("O");
 						xPlayerTurn=true;
-						textfield.setText("X turn");
+						textfield.setText("X's turn");
 						checkWin();
 					}
 				}
@@ -197,9 +195,8 @@ public class TicTacToe implements ActionListener {
 			buttons[i].setEnabled(true);
 			buttons[i].setText("");
 			buttons[i].resetKeyboardActions();
-			buttons[i].setBackground(new Color(123, 50, 250));
+			buttons[i].setBackground(Color.WHITE);
 		}
 		determineTurn();
 	}
 }
-
