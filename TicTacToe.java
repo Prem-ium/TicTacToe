@@ -15,7 +15,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-class TicTacToe implements ActionListener {
+public class TicTacToe implements ActionListener {
+	
 	private JFrame frame = new JFrame();
 	private JPanel settings = new JPanel();
 	private JPanel titlePanel = new JPanel();
@@ -24,9 +25,11 @@ class TicTacToe implements ActionListener {
 	private JButton[] buttons = new JButton[9];
 	private boolean xPlayerTurn;
 	private JButton reset = new JButton("RESET GAME");
+	
 	public TicTacToe() {
 		setIcon();
 		frame.setTitle("Tic-Tac-Toe");
+		frame.setResizable(false);
 		frame.setSize(600, 500);
 		frame.getContentPane().setBackground(new Color(123, 50, 250));
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
@@ -42,7 +45,7 @@ class TicTacToe implements ActionListener {
 		textfield.setHorizontalAlignment(JLabel.CENTER);
 		
 		titlePanel.setLayout(new BorderLayout());
-		titlePanel.setBounds(0, 0, 800, 100);
+		titlePanel.setBounds(0, 0, 900, 200);
 		titlePanel.add(textfield);
 		buttonPanel.setLayout(new GridLayout(3, 3));
 		buttonPanel.setBackground(new Color(123, 50, 250));
@@ -94,7 +97,7 @@ class TicTacToe implements ActionListener {
 	private void determineTurn() {
 		// Delays telling player whose turn it is to display title
 		try {
-			Thread.sleep(1500);
+			Thread.sleep(2200);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -108,7 +111,7 @@ class TicTacToe implements ActionListener {
 		}
 	}
 	private void setIcon() {
-		// Allows for JPane to use an icon from the internet URL 
+		// Allows for JPane to use an icon from URL 
 		try {
 			URL url = new URL("https://miro.medium.com/max/512/1*Syzc_BbO0QHTx74NLHcpiQ.png");
 			Image image = ImageIO.read(url);
@@ -192,5 +195,9 @@ class TicTacToe implements ActionListener {
 			buttons[i].setBackground(Color.WHITE);
 		}
 		determineTurn();
+	}
+	
+	public static void main(String[] args) {
+		new TicTacToe();
 	}
 }
